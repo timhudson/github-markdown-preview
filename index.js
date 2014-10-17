@@ -1,6 +1,5 @@
 var fs = require('fs')
 var marked = require('marked')
-var hyperglue = require('hyperglue')
 var inlineStyles = require('inline-styles')
 var githubMarkdownCss = require('github-markdown-css')
 var template = fs.readFileSync(__dirname + '/index.html').toString()
