@@ -1,0 +1,25 @@
+{
+  "name": "github-markdown-preview",
+  "version": "1.0.0",
+  "description": "Convert markdown to html with inlined styles using github-markdown-css",
+  "main": "index.js",
+  "bin": {
+    "github-markdown-preview": "cli.js"
+  },
+  "author": "Tim Hudson",
+  "license": "MIT",
+  "dependencies": {
+    "github-markdown-css": "^1.2.0",
+    "inline-styles": "^1.0.0",
+    "marked": "^0.3.2",
+    "minimist": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timhudson/github-markdown-preview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timhudson/github-markdown-preview/issues"
+  },
+  "homepage": "https://github.com/timhudson/github-markdown-preview"
+}
