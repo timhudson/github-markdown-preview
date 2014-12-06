@@ -10,10 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "chokidar": "^0.9.0",
-    "github-markdown-css": "^1.2.0",
+    "ecstatic": "^0.5.7",
+    "generate-github-markdown-css": "^1.0.1",
     "inline-styles": "^1.0.0",
     "marked": "^0.3.2",
-    "minimist": "^1.1.0"
+    "minimist": "^1.1.0",
+    "open": "0.0.5",
+    "sse-stream": "0.0.4"
   },
   "repository": {
     "type": "git",

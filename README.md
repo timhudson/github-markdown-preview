@@ -1,6 +1,6 @@
 # github-markdown-preview
 
-Convert markdown to html with inlined styles using [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
+Convert markdown to html with inlined styles using [generate-github-markdown-css](https://github.com/sindresorhus/generate-github-markdown-css)
 
 ## Programmatic usage
 
@@ -25,16 +25,24 @@ $ npm install --global github-markdown-preview
 $ github-markdown-preview --help
 Usage: github-markdown-preview <markdown-file> [options]
 
+outputs html of markdown with github styles to stdout
+
 Options:
 
   -h, --help     output usage information
-  -w, --watch    convert markdown when file changes
+  -s, --server   watch file and server changes. This overrides -w and -o.
+  -w, --watch    watch markdown file and convert on changes
   -o, --output   optional file path for output. stdout is used by default.
                  required when using --watch.
 ```
 
+### Live-reload
+
+Watches markdown file and automatically updates preview in browser
+
 ``` sh
-$ open /tmp/readme.html & github-markdown-preview ./README.md -w -o /tmp/readme.html
+$ github-markdown-preview ./README.md -s
+Preview now being served at http://localhost:9999
 ```
 
 ## License

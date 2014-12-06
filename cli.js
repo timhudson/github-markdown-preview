@@ -2,9 +2,12 @@
 
 var fs = require('fs')
 var path = require('path')
-var convert = require('./')
+var open = require('open')
 var chokidar = require('chokidar')
+var convert = require('./')
+var server = require('./server')
 var argv = require('minimist')(process.argv.slice(2), {alias: {
+  's': 'server',
   'w': 'watch',
   'o': 'output',
   'h': 'help'
@@ -13,9 +16,11 @@ var argv = require('minimist')(process.argv.slice(2), {alias: {
 if (!argv._.length || argv.help) {
   var usage = '' +
     'Usage: github-markdown-preview <markdown-file> [options]\n\n' +
+    'outputs html of markdown with github styles to stdout\n\n' +
     'Options:\n\n' +
     '  -h, --help     output usage information\n' +
-    '  -w, --watch    convert markdown when file changes\n' +
+    '  -s, --server   watch file and server changes. This overrides -w and -o.\n' +
+    '  -w, --watch    watch markdown file and convert on changes\n' +
     '  -o, --output   optional file path for output. stdout is used by default.\n' +
     '                 required when using --watch.'
   return console.log(usage)
@@ -27,19 +32,43 @@ if (argv.watch && !argv.output) {
 
 var markdownPath = path.resolve(argv._[0])
 
+if (argv.server) {
+  chokidar
+    .watch(markdownPath, {persistent: true})
+    .on('change', updateServerHTML)
+
+  server.listen(9999)
+
+  console.log('Preview now being served at http://localhost:9999')
+
+  open('http://localhost:9999')
+
+  return updateServerHTML()
+}
+
 if (argv.watch) {
   chokidar
     .watch(markdownPath, {persistent: true})
-    .on('change', generateHTML)
+    .on('change', logHTML)
 }
 
-generateHTML()
+logHTML()
 
-function generateHTML() {
+function generateHTML(callback) {
   var md = fs.readFileSync(markdownPath)
-  convert(md, function(err, html) {
+  convert(md, callback)
+}
+
+function logHTML() {
+  generateHTML(function(err, html) {
     if (err) throw err
     if (argv.o) return fs.writeFileSync(path.resolve(argv.o), html)
     console.log(html)
+  })
+}
+
+function updateServerHTML() {
+  generateHTML(function(err, html) {
+    server.update(html)
   })
 }

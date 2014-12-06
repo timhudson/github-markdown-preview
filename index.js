@@ -1,8 +1,8 @@
 var fs = require('fs')
 var marked = require('marked')
 var inlineStyles = require('inline-styles')
-var githubMarkdownCss = require('github-markdown-css')
-var template = fs.readFileSync(__dirname + '/index.html').toString()
+var githubMarkdownCss = require('generate-github-markdown-css')
+var template = fs.readFileSync(__dirname + '/template.html').toString()
 
 module.exports = function(markdown, callback) {
   // Accept a buffer or string
@@ -14,6 +14,7 @@ module.exports = function(markdown, callback) {
     var body = marked(markdown)
     var html = template.replace('{{markdown}}', body)
     var inlinedHtml = inlineStyles(html, __dirname)
+
     callback(null, inlinedHtml.toString())
   })
 }
