@@ -2,7 +2,7 @@
 
 var fs = require('fs')
 var path = require('path')
-var open = require('open')
+var opn = require('opn')
 var chokidar = require('chokidar')
 var convert = require('./')
 var server = require('./server')
@@ -41,7 +41,7 @@ if (argv.server) {
 
   console.log('Preview now being served at http://localhost:9999')
 
-  open('http://localhost:9999')
+  opn('http://localhost:9999')
 
   return updateServerHTML()
 }
