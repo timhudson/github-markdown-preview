@@ -37,13 +37,11 @@ if (argv.server) {
     .watch(markdownPath, {persistent: true})
     .on('change', updateServerHTML)
 
-  server.listen(9999)
-
-  console.log('Preview now being served at http://localhost:9999')
-
-  opn('http://localhost:9999')
-
-  return updateServerHTML()
+  return updateServerHTML(function() {
+    server.listen(9999)
+    console.log('Preview now being served at http://localhost:9999')
+    opn('http://localhost:9999')
+  })
 }
 
 if (argv.watch) {
@@ -67,8 +65,9 @@ function logHTML() {
   })
 }
 
-function updateServerHTML() {
+function updateServerHTML(cb) {
   generateHTML(function(err, html) {
     server.update(html)
+    if (cb) cb()
   })
 }
