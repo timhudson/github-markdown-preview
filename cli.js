@@ -71,6 +71,6 @@ function logHTML() {
 function updateServerHTML(cb) {
   generateHTML(function(err, html) {
     server.update(html)
-    if (cb) cb()
+    if (typeof cb === 'function') cb()
   })
 }
