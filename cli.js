@@ -11,7 +11,7 @@ var argv = require('minimist')(process.argv.slice(2), {alias: {
   'w': 'watch',
   'o': 'output',
   'h': 'help'
-}})
+}, boolean: ['server', 'watch']})
 
 if (!argv._.length || argv.help) {
   var usage = '' +
