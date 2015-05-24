@@ -6,12 +6,15 @@ var opn = require('opn')
 var chokidar = require('chokidar')
 var convert = require('./')
 var server = require('./server')
-var argv = require('minimist')(process.argv.slice(2), {alias: {
-  's': 'server',
-  'w': 'watch',
-  'o': 'output',
-  'h': 'help'
-}})
+var argv = require('minimist')(process.argv.slice(2), {
+  alias: {
+    's': 'server',
+    'w': 'watch',
+    'o': 'output',
+    'h': 'help'
+  },
+  boolean: ['server', 'watch']
+})
 
 if (!argv._.length || argv.help) {
   var usage = '' +
