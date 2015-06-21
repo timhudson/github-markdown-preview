@@ -32,6 +32,7 @@ Options:
   -h, --help     output usage information
   -s, --server   watch file and server changes. This overrides -w and -o.
   -w, --watch    watch markdown file and convert on changes
+  -p, --port     optional TCP port to start the server at, defaults to 9999
   -o, --output   optional file path for output. stdout is used by default.
                  required when using --watch.
 ```
