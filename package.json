@@ -1,6 +1,6 @@
 {
   "name": "github-markdown-preview",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Convert markdown to html with inlined styles using github-markdown-css",
   "main": "index.js",
   "bin": {
