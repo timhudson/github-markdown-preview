@@ -12,7 +12,7 @@ module.exports = function(markdown, callback) {
     if (err) return callback(err)
 
     var body = marked(markdown)
-    var html = template.replace('{{markdown}}', body)
+    var html = template.split('{{markdown}}').join(body)
     var inlinedHtml = inlineStyles(html, __dirname)
 
     callback(null, inlinedHtml.toString())
